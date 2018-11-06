@@ -14,8 +14,9 @@ class CreateTipsTable extends Migration
     public function up()
     {
         Schema::create('tips', function (Blueprint $table) {
-            $table->increments('guid');
-            $table->string('title');	
+            $table->increments('id');
+            $table->string('guid');
+            $table->string('title');
             $table->text('description');
             $table->timestamps();
             $table->softDeletes();

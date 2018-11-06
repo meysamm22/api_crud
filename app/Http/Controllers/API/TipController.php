@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Tip;
+use App\Infrastructure\TipRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class TipController extends Controller
 {
+
+    private $tipRepository;
+
+    function __construct(TipRepository $tipRepository)
+    {
+      $this->tipRepository = $tipRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TipRepository $tipModel)
     {
-        //
+        $tips = $this->tipRepository->getAllTips();
+        return response()->json($tips, 200);
     }
 
     /**
@@ -26,7 +35,7 @@ class TipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -35,7 +44,7 @@ class TipController extends Controller
      * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function show(Tip $tip)
+    public function show(TipModel $tipModel)
     {
         //
     }
@@ -47,7 +56,7 @@ class TipController extends Controller
      * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tip $tip)
+    public function update(Request $request, TipModel $tipModel)
     {
         //
     }
@@ -58,7 +67,7 @@ class TipController extends Controller
      * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tip $tip)
+    public function destroy(TipModel $tipModel)
     {
         //
     }
