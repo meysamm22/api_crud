@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Infrastructure\TipRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\ResponseStatusConst;
+
 
 class TipController extends Controller
 {
@@ -24,7 +26,11 @@ class TipController extends Controller
     public function index(TipRepository $tipModel)
     {
         $tips = $this->tipRepository->getAllTips();
-        return response()->json($tips, 200);
+        $status = ResponseStatusConst::OK_RESPONSE;
+        if(!$tips){
+          $status = ResponseStatusConst::NO_CONTENT_RESPONSE;;
+        }
+        return response()->json($tips, $status);
     }
 
     /**
@@ -35,7 +41,15 @@ class TipController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+        $tip = $this->tipRepository->add($request->guid,
+                            $request->title,
+                            $request->description);
+        $status = ResponseStatusConst::CREATED_RESPONSE;
+        if(!$tip){
+          $status = ResponseStatusConst::BAD_REQ_RESPONSE;;
+        }
+        return response()->json($tip, $status);
     }
 
     /**
@@ -56,9 +70,17 @@ class TipController extends Controller
      * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipModel $tipModel)
+    public function update(Request $request)
     {
-        //
+      $tip = $this->tipRepository->update($request->guid,
+                          $request->title,
+                          $request->description,
+                          $request->id);
+      $status = ResponseStatusConst::CREATED_RESPONSE;
+      if(!$tip){
+        $status = ResponseStatusConst::BAD_REQ_RESPONSE;;
+      }
+      return response()->json($tip, $status);
     }
 
     /**
