@@ -55,19 +55,23 @@ class TipController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tip  $tip
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(TipModel $tipModel)
+    public function show(Request $request)
     {
-        //
+      $tip = $this->tipRepository->getAssoc($request->id);
+      $status = ResponseStatusConst::OK_RESPONSE;
+      if(!$tip){
+        $status = ResponseStatusConst::NO_CONTENT_RESPONSE;;
+      }
+      return response()->json($tip, $status);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tip  $tip
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)

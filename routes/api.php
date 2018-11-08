@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('tip', 'API\TipController@index');
 Route::post('tip/insert', 'API\TipController@store');
 Route::post('tip/update', 'API\TipController@update');
+Route::post('tip/show', 'API\TipController@show');

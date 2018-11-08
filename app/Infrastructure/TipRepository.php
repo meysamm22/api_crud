@@ -71,4 +71,19 @@ class TipRepository implements TipRepositoryInterface
 
     return false;
   }
+
+  public function getAssoc($id)
+  {
+    $tipModel = TipModel::find($id);
+    if ($tipModel) {
+      $tip = new Tip();
+      $tip->setId($tipModel->id);
+      $tip->setGuid($tipModel->guid);
+      $tip->setTitle($tipModel->title);
+      $tip->setDescription($tipModel->description);
+
+      return $tip;
+    }
+    return false;
+  }
 }
