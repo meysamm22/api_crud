@@ -20,3 +20,4 @@ Route::post('tip', 'API\TipController@index');
 Route::post('tip/insert', 'API\TipController@store');
 Route::post('tip/update', 'API\TipController@update');
 Route::post('tip/show', 'API\TipController@show');
+Route::post('tip/destroy', 'API\TipController@destroy');

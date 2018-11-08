@@ -90,11 +90,13 @@ class TipController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tip  $tip
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipModel $tipModel)
+    public function destroy(Request $request)
     {
-        //
+        $this->tipRepository->delete($request->id);
+        return response()->json('', ResponseStatusConst::OK_RESPONSE);
+
     }
 }

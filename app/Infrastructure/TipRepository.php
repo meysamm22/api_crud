@@ -86,4 +86,11 @@ class TipRepository implements TipRepositoryInterface
     }
     return false;
   }
+
+  public function delete($id)
+  {
+    TipModel::destroy($id);
+
+    return true;
+  }
 }
