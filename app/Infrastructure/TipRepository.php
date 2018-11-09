@@ -5,23 +5,31 @@ namespace App\Infrastructure;
 use App\Core\TipRepositoryInterface;
 use App\TipModel;
 use App\Core\Tip;
-//use App\Infrastructure\TipFactory;
-
 
 class TipRepository implements TipRepositoryInterface
 {
 
-  private $tipFactory;
+  public $tipFactory;
 
   function __construct()
   {
     $this->tipFactory = new TipFactory();
   }
 
-  public function getAllTips()
+  private function getAllTips()
+  {
+    return TipModel::all();
+  }
+
+  private function getAssoc($id)
+  {
+    return TipModel::find($id);
+  }
+
+  public function getTipsList()
   {
      $tips =  array();
-     $tipsModel = TipModel::all();
+     $tipsModel = $this->getAllTips();
      if ($tipsModel) {
        foreach ($tipsModel as $tipModel) {
          $tip = new Tip();
@@ -72,9 +80,9 @@ class TipRepository implements TipRepositoryInterface
     return false;
   }
 
-  public function getAssoc($id)
+  public function getTip($id)
   {
-    $tipModel = TipModel::find($id);
+    $tipModel = $this->getAssoc($id);
     if ($tipModel) {
       $tip = new Tip();
       $tip->setId($tipModel->id);

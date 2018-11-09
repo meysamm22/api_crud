@@ -25,7 +25,7 @@ class TipController extends Controller
      */
     public function index(TipRepository $tipModel)
     {
-        $tips = $this->tipRepository->getAllTips();
+        $tips = $this->tipRepository->getTipsList();
         $status = ResponseStatusConst::OK_RESPONSE;
         if(!$tips){
           $status = ResponseStatusConst::NO_CONTENT_RESPONSE;;
@@ -60,7 +60,7 @@ class TipController extends Controller
      */
     public function show(Request $request)
     {
-      $tip = $this->tipRepository->getAssoc($request->id);
+      $tip = $this->tipRepository->getTip($request->id);
       $status = ResponseStatusConst::OK_RESPONSE;
       if(!$tip){
         $status = ResponseStatusConst::NO_CONTENT_RESPONSE;;

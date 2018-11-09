@@ -3,19 +3,19 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Core\Tip;
+use App\TipModel;
 
-class ExampleTest extends TestCase
+class TipRepositoryTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testExample()
     {
-        $stub = $this->createMock(Tip::class);
         $this->assertTrue(true);
     }
 }
