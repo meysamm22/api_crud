@@ -16,7 +16,7 @@ class TipRepository implements TipRepositoryInterface
     $this->tipFactory = new TipFactory();
   }
 
-  private function getAllTips()
+  public function getAllTips()
   {
     return TipModel::all();
   }

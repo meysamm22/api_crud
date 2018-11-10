@@ -10,5 +10,6 @@ interface TipRepositoryInterface
   public function delete($id);
   public function getTip($id);
   public function getTipsList();
+  public function getAllTips();
 
 }
